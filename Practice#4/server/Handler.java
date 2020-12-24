@@ -16,7 +16,7 @@ public class Handler extends SimpleChannelInboundHandler<String> {
     private static int clientIndex = 1;
     private String clientName;
 
-    @Override                                                                       //Событие подключения клиента
+    @Override    //Событие подключения клиента
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("Клиент подключен" + ctx);
         channels.add(ctx.channel());
@@ -24,7 +24,7 @@ public class Handler extends SimpleChannelInboundHandler<String> {
         clientIndex++;
     }
 
-    @Override                                                                      //Обработка данных, введенных клиентом
+    @Override   //Обработка данных, введенных клиентом
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
         System.out.println("Получено сообщение" + s);
         int result;
@@ -36,7 +36,7 @@ public class Handler extends SimpleChannelInboundHandler<String> {
         int oprnd2 = Integer.parseInt(st.nextToken());
 
 
-        if (operation.equals("+")){                         // Выбор операции
+        if (operation.equals("+")){       // Выбор операции
             result = oprnd1 + oprnd2;
         }
 
@@ -52,13 +52,13 @@ public class Handler extends SimpleChannelInboundHandler<String> {
             result = oprnd1 / oprnd2;
         }
 
-        String out = String.format("[%s]: %s\n", clientName, result);                                           //Очистка памяти
+        String out = String.format("[%s]: %s\n", clientName, result);    //Очистка памяти
         for(Channel c: channels) {
             c.writeAndFlush(out);
         }
     }
 
-    @Override                                                                                       //Обработка отключения клиента
+    @Override     //Обработка отключения клиента
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         System.out.println("Пользователь" + clientName + "Покинул чат");
         channels.remove(ctx.channel());
