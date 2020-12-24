@@ -18,10 +18,6 @@ import io.netty.handler.codec.string.*;
 
 public final class Client {
 
-    //static final String HOST = System.getProperty("host", "127.0.0.1");
-    //static final int PORT = Integer.parseInt(System.getProperty("port", "1234"));
-
-
     public static void main(String[] args) throws Exception {
 
                                                                             //Настройка клиента
@@ -40,17 +36,7 @@ public final class Client {
                             pipeline.addLast("decoder", new StringDecoder());
                             pipeline.addLast("encoder", new StringEncoder());
                             pipeline.addLast("handler", new ClientHandler());
-
-                        }
-                        // ChannelPipeline p = ch.pipeline();
-                        // if (sslCtx != null) {
-                        // p.addLast(sslCtx.newHandler(ch.alloc(), HOST, PORT));
-                        // }
-                        //p.addLast(new LoggingHandler(LogLevel.INFO));
-                        // p.addLast(new NettyClientHandler());
-                        // }
-                    });
-
+                       
             ChannelFuture f = b.connect("localhost", 1234).sync();  //
 
             Channel channel = f.channel();
@@ -63,12 +49,7 @@ public final class Client {
                 ChannelFuture cf = channel.writeAndFlush(line + "\r\n");
             }
 
-            // Start the client.
-
-            // Wait until the connection is closed.
-            // f.channel().closeFuture().sync();
         } finally {
-            // Shut down the event loop to terminate all threads.
             group.shutdownGracefully();
         }
     }
