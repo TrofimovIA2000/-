@@ -28,7 +28,7 @@ public class ServerApp {
                         }
                     });
             ChannelFuture future = b.bind(1234).sync();             //Запуск сервера
-            future.channel().closeFuture().sync();                         //Ожидание остановки работы сервера
+            future.channel().closeFuture().sync();                  //Ожидание остановки работы сервера
         }
 
         catch(Exception e){
