@@ -18,8 +18,6 @@ import io.netty.handler.codec.string.*;
 
 public final class Client {
 
-    private static int clientIndex = 1;
-
     public static void main(String[] args) throws Exception {
                                                                             //Настройка клиента
         EventLoopGroup group = new NioEventLoopGroup();                    //Пул потоков для обработки сетевых событий
