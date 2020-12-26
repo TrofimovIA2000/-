@@ -20,7 +20,10 @@ public final class Client {
     public static void main(String[] args) throws Exception {
                                                                             //Настройка клиента
         EventLoopGroup group = new NioEventLoopGroup();                    //Пул потоков для обработки сетевых событий
-        System.out.println("Клиент подключен");
+        System.out.println("Клиент подключен + "\n" + "░CONNECTION░░░░░░░GUSE░░" + "\n" + " ░░░░░▄▀▀▀▄░░░░░░░" + "\n" + "▄███▀░◐░░░▌░░░░░░" +
+                "\n" + "░░░░▌░░░░░▐░░░░░ " + "\n" + "░░░░▌░░░░▄▀▒▒▀▀▀▀▄" + "\n" + "░░░▐░░░░▐▒▒▒▒▒▒▒▒▀▀▄" + "\n" + "░░░▐░░░░▐▄▒▒▒▒▒▒▒▒▒▒▀▄" +
+                "\n" + "░░░░▀▄░░░░▀▄▒▒▒▒▒▒▒▒▒▒▀▄" + "\n" + "░░░░░░▀▄▄▄▄▄█▄▄▄▄▄▄▄▄▄▄▄▀▄ " + "\n" + "░░░░░░░░░░░▌▌░▌▌░░░░░ " + "\n" +
+                "░░░░░░░░░░░▌▌░▌▌░░░░░ " + "\n" + "░░░░░░░░░▄▄▌▌▄▌▌░░░░░");
         try {
             Bootstrap b = new Bootstrap();
             b.group(group)
