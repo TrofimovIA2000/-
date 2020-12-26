@@ -30,27 +30,27 @@ public final class Client {
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast("framer", new DelimiterBasedFrameDecoder(1234, Delimiters.lineDelimiter()));
-                            pipeline.addLast("decoder", new StringDecoder());
-                            pipeline.addLast("encoder", new StringEncoder());
+                            pipeline.addLast("decoder", new StringDecoder()); //Входящий хэндлер - преобразует входной байтбуффер в строку
+                            pipeline.addLast("encoder", new StringEncoder()); //Исходящий хэндлер - преобразование строки в байтбуффер
                             pipeline.addLast("handler", new ClientHandler());
 
                         }
                     });
 
-            ChannelFuture f = b.connect("localhost", 1234).sync();
+            ChannelFuture f = b.connect("localhost", 1234).sync();             //Подключение к серверу
 
             Channel channel = f.channel();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-            while (true) {
+            while (true) {                                                     //Передача введенной строки серверу
 
                 String line = in.readLine();
-                ChannelFuture cf = channel.writeAndFlush(line + "\r\n");
+                ChannelFuture cf = channel.writeAndFlush(line + "\r\n");       
             }
 
 
-        } finally {
+        } finally {                                                           //Отключение клиента (закрытие пула потоков group)
             group.shutdownGracefully();
         }
     }
