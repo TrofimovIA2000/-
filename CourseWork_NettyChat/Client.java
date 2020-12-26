@@ -40,7 +40,7 @@ public final class Client {
                         }
                     });
 
-            ChannelFuture f = b.connect("localhost", 1234).sync();             //Подключение к серверу
+            ChannelFuture f = b.connect("localhost", 1234).sync();             //Запуск клиента и подключение к серверу (Номер порта задан в виде константы)
 
             Channel channel = f.channel();
 
